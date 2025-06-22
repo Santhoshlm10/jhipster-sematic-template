@@ -1,6 +1,5 @@
 @import 'bootstrap-variables';
 @import 'bootstrap/scss/bootstrap';
-@import 'semantic-ui-css/semantic.min.css';
 
 @font-face {
   font-family: 'Lato';
@@ -14,6 +13,11 @@
   src: url('../content/fonts/lato/Lato-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
+}
+
+/* Override font-family for toast notifications */
+.Toastify__toast {
+  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif !important;
 }
 
 body {
