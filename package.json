@@ -96,6 +96,8 @@
     "react-transition-group": "4.4.5",
     "reactstrap": "9.2.3",
     "redux": "5.0.1",
+    "semantic-ui-css": "^2.5.0",
+    "semantic-ui-react": "^2.1.5",
     "tslib": "2.8.1",
     "uuid": "11.1.0"
   },
