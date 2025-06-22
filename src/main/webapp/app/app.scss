@@ -1,10 +1,23 @@
-// Override Bootstrap variables
 @import 'bootstrap-variables';
-// Import Bootstrap source files from node_modules
 @import 'bootstrap/scss/bootstrap';
 @import 'semantic-ui-css/semantic.min.css';
 
+@font-face {
+  font-family: 'Lato';
+  src: url('../content/fonts/lato/Lato-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('../content/fonts/lato/Lato-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
 body {
+  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   background: #fafafa;
   margin: 0;
 }
@@ -17,6 +30,7 @@ a {
 * {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+
   &:after,
   &::before {
     -moz-box-sizing: border-box;
@@ -26,17 +40,21 @@ a {
 
 .app-container {
   box-sizing: border-box;
+
   .view-container {
     width: 100%;
     height: calc(100% - 40px);
     overflow-y: auto;
     overflow-x: hidden;
     padding: 1rem;
+
     .card {
       padding: 1rem;
     }
+
     .view-routes {
       height: 100%;
+
       > div {
         height: 100%;
       }
@@ -75,10 +93,12 @@ Custom button styles
   border-color: transparent;
   padding: 0.5rem;
   line-height: 1rem;
+
   &:hover {
     background-color: transparent;
     border-color: transparent;
   }
+
   &:focus {
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -227,6 +247,7 @@ Generic styles
 .no-margin {
   margin: 0;
 }
+
 @mixin voffset($size) {
   @if $size== '' {
     .voffset {
