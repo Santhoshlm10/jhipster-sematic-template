@@ -2,6 +2,20 @@
 
 This application was generated using JHipster 8.11.0, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v8.11.0](https://www.jhipster.tech/documentation-archive/v8.11.0).
 
+## Renaming Project
+
+To rename this project with a new name please use rename-jhipster.sh, to run this follow these steps:
+
+Give permission for shell
+```
+chmod +x rename-jhipster.sh
+```
+Rename it
+```
+./rename-jhipster.sh com.old.package com.new.package oldappname newappname
+```
+
+
 ## Project Structure
 
 Node is required for generation and recommended for development. `package.json` is always generated for a better development experience with prettier, commit hooks, scripts and so on.
