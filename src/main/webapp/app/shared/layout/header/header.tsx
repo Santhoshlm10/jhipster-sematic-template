@@ -34,19 +34,25 @@ const Header = (props: IHeaderProps) => {
   return (
     <div id="app-header">
       <LoadingBar className="loading-bar" />
-      <Navbar data-cy="navbar" dark expand="md" fixed="top" className="jh-navbar">
-        <NavbarToggler aria-label="Menu" onClick={toggleMenu} />
-        <Brand />
-        <Collapse isOpen={menuOpen} navbar>
-          <Nav id="header-tabs" className="ms-auto" navbar>
-            <Home />
-            {props.isAuthenticated && <EntitiesMenu />}
-            {props.isAuthenticated && props.isAdmin && <AdminMenu showOpenAPI={props.isOpenAPIEnabled} />}
-            <LocaleMenu currentLocale={props.currentLocale} onClick={handleLocaleChange} />
-            <AccountMenu isAuthenticated={props.isAuthenticated} />
-          </Nav>
-        </Collapse>
-      </Navbar>
+      {props.isAuthenticated ? (
+        <>
+          <Navbar data-cy="navbar" dark expand="md" fixed="top" className="jh-navbar">
+            <NavbarToggler aria-label="Menu" onClick={toggleMenu} />
+            <Brand />
+            <Collapse isOpen={menuOpen} navbar>
+              <Nav id="header-tabs" className="ms-auto" navbar>
+                <Home />
+                <EntitiesMenu />
+                {props.isAdmin && <AdminMenu showOpenAPI={props.isOpenAPIEnabled} />}
+                <LocaleMenu currentLocale={props.currentLocale} onClick={handleLocaleChange} />
+                <AccountMenu isAuthenticated={props.isAuthenticated} />
+              </Nav>
+            </Collapse>
+          </Navbar>
+        </>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

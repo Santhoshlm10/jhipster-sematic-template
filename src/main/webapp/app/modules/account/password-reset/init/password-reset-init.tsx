@@ -5,6 +5,8 @@ import { toast } from 'react-toastify';
 
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 import { handlePasswordResetInit, reset } from '../password-reset.reducer';
+import { Link } from 'react-router';
+import './../password-reset.scss';
 
 export const PasswordResetInit = () => {
   const dispatch = useAppDispatch();
@@ -29,17 +31,12 @@ export const PasswordResetInit = () => {
   }, [successMessage]);
 
   return (
-    <div>
+    <div className="reset-password-form-container">
       <Row className="justify-content-center">
-        <Col md="8">
-          <h1>
+        <Col>
+          <h4 id="reset-password-title">
             <Translate contentKey="reset.request.title">Reset your password</Translate>
-          </h1>
-          <Alert color="warning">
-            <p>
-              <Translate contentKey="reset.request.messages.info">Enter the email address you used to register</Translate>
-            </p>
-          </Alert>
+          </h4>
           <ValidatedForm onSubmit={handleValidSubmit}>
             <ValidatedField
               name="email"
@@ -60,6 +57,14 @@ export const PasswordResetInit = () => {
           </ValidatedForm>
         </Col>
       </Row>
+      <br />
+      <Alert color="info">
+        If you already have an account &nbsp;
+        <Link to="/login" className="alert-link">
+          Click here
+        </Link>
+        &nbsp; to sign in
+      </Alert>
     </div>
   );
 };

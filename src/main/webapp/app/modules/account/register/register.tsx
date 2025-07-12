@@ -3,7 +3,7 @@ import { Translate, ValidatedField, ValidatedForm, isEmail, translate } from 're
 import { Alert, Button, Col, Row } from 'reactstrap';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
-
+import './register.scss';
 import PasswordStrengthBar from 'app/shared/layout/password/password-strength-bar';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 import { handleRegister, reset } from './register.reducer';
@@ -36,16 +36,12 @@ export const RegisterPage = () => {
   }, [successMessage]);
 
   return (
-    <div>
+    <div className="register-form-container">
       <Row className="justify-content-center">
-        <Col md="8">
-          <h1 id="register-title" data-cy="registerTitle">
+        <Col>
+          <h4 id="register-title" data-cy="registerTitle">
             <Translate contentKey="register.title">Registration</Translate>
-          </h1>
-        </Col>
-      </Row>
-      <Row className="justify-content-center">
-        <Col md="8">
+          </h4>
           <ValidatedForm id="register-form" onSubmit={handleValidSubmit}>
             <ValidatedField
               name="username"
@@ -106,21 +102,13 @@ export const RegisterPage = () => {
               <Translate contentKey="register.form.button">Register</Translate>
             </Button>
           </ValidatedForm>
-          <p>&nbsp;</p>
-          <Alert color="warning">
-            <span>
-              <Translate contentKey="global.messages.info.authenticated.prefix">If you want to</Translate>{' '}
-            </span>
+          <br />
+          <Alert color="info">
+            If you already have an account &nbsp;
             <Link to="/login" className="alert-link">
-              <Translate contentKey="global.messages.info.authenticated.link">sign in</Translate>
+              Click here
             </Link>
-            <span>
-              <Translate contentKey="global.messages.info.authenticated.suffix">
-                , you can try the default accounts:
-                <br />- Administrator (login=&quot;admin&quot; and password=&quot;admin&quot;)
-                <br />- User (login=&quot;user&quot; and password=&quot;user&quot;).
-              </Translate>
-            </span>
+            &nbsp; to sign in
           </Alert>
         </Col>
       </Row>

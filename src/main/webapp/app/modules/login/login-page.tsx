@@ -3,15 +3,14 @@ import { Translate, ValidatedField, translate } from 'react-jhipster';
 import { Alert, Button, Col, Form, Modal, ModalBody, ModalFooter, ModalHeader, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { type FieldError, useForm } from 'react-hook-form';
+import './login.scss';
 
 export interface ILoginModalProps {
-  showModal: boolean;
   loginError: boolean;
   handleLogin: (username: string, password: string, rememberMe: boolean) => void;
-  handleClose: () => void;
 }
 
-const LoginModal = (props: ILoginModalProps) => {
+const LoginPage = (props: ILoginModalProps) => {
   const login = ({ username, password, rememberMe }) => {
     props.handleLogin(username, password, rememberMe);
   };
@@ -22,19 +21,19 @@ const LoginModal = (props: ILoginModalProps) => {
     formState: { errors, touchedFields },
   } = useForm({ mode: 'onTouched' });
 
-  const { loginError, handleClose } = props;
+  const { loginError } = props;
 
   const handleLoginSubmit = e => {
     handleSubmit(login)(e);
   };
 
   return (
-    <Modal isOpen={props.showModal} toggle={handleClose} backdrop="static" id="login-page" autoFocus={false}>
-      <Form onSubmit={handleLoginSubmit}>
-        <ModalHeader id="login-title" data-cy="loginTitle" toggle={handleClose}>
+    <div className="login-form-container">
+      <Col>
+        <h4 id="login-title" data-cy="loginTitle">
           <Translate contentKey="login.title">Sign in</Translate>
-        </ModalHeader>
-        <ModalBody>
+        </h4>
+        <Form onSubmit={handleLoginSubmit}>
           <Row>
             <Col md="12">
               {loginError ? (
@@ -70,42 +69,37 @@ const LoginModal = (props: ILoginModalProps) => {
                 error={errors.password as FieldError}
                 isTouched={touchedFields.password}
               />
-              <ValidatedField
-                name="rememberMe"
-                type="checkbox"
-                check
-                label={translate('login.form.rememberme')}
-                value={true}
-                register={register}
-              />
+              <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                <ValidatedField
+                  name="rememberMe"
+                  type="checkbox"
+                  check
+                  label={translate('login.form.rememberme')}
+                  value={true}
+                  register={register}
+                />
+                <Link to="/account/reset/request" data-cy="forgetYourPasswordSelector">
+                  <Translate contentKey="login.password.forgot">Forgot password?</Translate>
+                </Link>
+              </div>
+              <Button color="primary" type="submit" data-cy="submit" className="mt-2">
+                <Translate contentKey="login.form.button">Sign in</Translate>
+              </Button>
             </Col>
           </Row>
           <div className="mt-1">&nbsp;</div>
-          <Alert color="warning">
-            <Link to="/account/reset/request" data-cy="forgetYourPasswordSelector">
-              <Translate contentKey="login.password.forgot">Did you forget your password?</Translate>
-            </Link>
-          </Alert>
-          <Alert color="warning">
-            <span>
-              <Translate contentKey="global.messages.info.register.noaccount">You don&apos;t have an account yet?</Translate>
-            </span>{' '}
-            <Link to="/account/register">
-              <Translate contentKey="global.messages.info.register.link">Register a new account</Translate>
-            </Link>
-          </Alert>
-        </ModalBody>
-        <ModalFooter>
-          <Button color="secondary" onClick={handleClose} tabIndex={1}>
-            <Translate contentKey="entity.action.cancel">Cancel</Translate>
-          </Button>{' '}
-          <Button color="primary" type="submit" data-cy="submit">
-            <Translate contentKey="login.form.button">Sign in</Translate>
-          </Button>
-        </ModalFooter>
-      </Form>
-    </Modal>
+        </Form>
+        <Alert color="info">
+          <span>
+            <Translate contentKey="global.messages.info.register.noaccount">You don&apos;t have an account yet?</Translate>
+          </span>{' '}
+          <Link to="/account/register">
+            <Translate contentKey="global.messages.info.register.link">Register a new account</Translate>
+          </Link>
+        </Alert>
+      </Col>
+    </div>
   );
 };
 
-export default LoginModal;
+export default LoginPage;
